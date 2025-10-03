@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bike System - Cadastro</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cadastro de Produto</h1>
+      <form id="produtoForm">
+        <label>Descrição:</label>
+        <input type="text" id="descricao" required />
+
+        <label>Imagem (Upload):</label>
+        <input type="file" id="imagem" accept="image/*" />
+
+        <label>Preço de Venda:</label>
+        <input type="number" id="preco" step="0.01" required />
+
+        <label>Preço de Custo:</label>
+        <input type="number" id="custo" step="0.01" required />
+
+        <label>Fabricante:</label>
+        <input type="text" id="fabricante" />
+
+        <label>Categoria:</label>
+        <input type="text" id="categoria" />
+
+        <button type="submit">Cadastrar Produto</button>
+      </form>
+      <div class="bottom-buttons">
+        <button onclick="window.location.href='listagem.html'">
+          📋 Listar Produtos
+        </button>
+        <button onclick="window.location.href='painel.html'">
+          🏠 Voltar ao Painel
+        </button>
+      </div>
+    </div>
+    <script src="../js/cadastro.js"></script>
+  </body>
+</html>
+

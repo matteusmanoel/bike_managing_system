@@ -135,3 +135,18 @@ form button[type="submit"]:hover {
 .btn-sair:hover {
   background-color: #c0392b;
 }
+
+/* Botões inferiores */
+.bottom-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 30px;
+}
+
+.bottom-buttons button {
+  width: 100%;
+  font-size: 16px;
+  padding: 14px 18px;
+  background-color: #007bff;
+}
