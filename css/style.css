@@ -168,3 +168,99 @@ form button[type="submit"]:hover {
 .main-header nav a:hover {
   text-decoration: underline;
 }
+
+/* Grid de Produtos */
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.produto-card {
+  position: relative;
+  background: rgb(206, 206, 206);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 240px;
+  margin: 0 auto;
+}
+
+.produto-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.produto-card button {
+  margin: 3px;
+  padding: 6px 12px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-remover {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 1.1rem;
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 1;
+  transition: transform 0.1s ease-in-out;
+}
+
+.btn-remover:hover {
+  transform: scale(1.2);
+  color: darkred;
+}
+
+/* Busca de Produtos */
+.busca-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#buscaProduto {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.btn-lupa {
+  padding: 10px 15px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-lupa:hover {
+  background-color: #0056b3;
+}
+
+.mensagem-busca {
+  margin-top: 50px;
+  text-align: center;
+  font-weight: bold;
+  color: #999;
+}
