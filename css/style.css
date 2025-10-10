@@ -150,3 +150,21 @@ form button[type="submit"]:hover {
   padding: 14px 18px;
   background-color: #007bff;
 }
+
+/* Header de Navegação */
+.main-header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.main-header nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+.main-header nav a:hover {
+  text-decoration: underline;
+}
