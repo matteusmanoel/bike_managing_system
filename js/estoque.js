@@ -35,14 +35,56 @@ function compararData(dataBR) {
 
 function renderizarTabela(filtrado = null) {
   const vendas = filtrado || JSON.parse(localStorage.getItem("estoque")) || [];
-  const container = document.getElementById("tabelaContainer");
-  
+  const tbody = document.querySelector("#tabelaEstoque tbody");
+  tbody.innerHTML = "";
+
   if (vendas.length === 0) {
-    container.innerHTML = "<p>Nenhuma venda registrada.</p>";
+    tbody.innerHTML = '<tr><td colspan="6">Nenhuma venda registrada.</td></tr>';
     return;
   }
 
-  container.innerHTML = `<p>${vendas.length} venda(s) encontrada(s)</p>`;
+  let totalQtd = 0;
+  let totalValor = 0;
+
+  vendas.forEach((venda) => {
+    const quantidade = Number(venda.quantidade);
+    const preco = Number(venda.preco || 0);
+    const subtotal = quantidade * preco;
+
+    totalQtd += quantidade;
+    totalValor += subtotal;
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${venda.data}</td>
+      <td>${venda.nome}</td>
+      <td>${venda.descricao}</td>
+      <td>${venda.vendedor}</td>
+      <td>${venda.pagamento}</td>
+      <td>${quantidade}</td>
+    `;
+    tbody.appendChild(row);
+  });
+
+  const totalRow = document.createElement("tr");
+  totalRow.style.fontWeight = "bold";
+  totalRow.style.backgroundColor = "#e9f5ff";
+  totalRow.innerHTML = `
+    <td colspan="5" style="text-align: right;">TOTAL DE ITENS:</td>
+    <td>${totalQtd}</td>
+  `;
+  tbody.appendChild(totalRow);
+
+  const valorRow = document.createElement("tr");
+  valorRow.style.fontWeight = "bold";
+  valorRow.style.backgroundColor = "#d4f4e5";
+  valorRow.innerHTML = `
+    <td colspan="5" style="text-align: right;">VALOR TOTAL (R$):</td>
+    <td>${totalValor.toFixed(2).replace(".", ",")}</td>
+  `;
+  tbody.appendChild(valorRow);
+
+  window.vendasFiltradas = vendas;
 }
 
 function voltar() {
