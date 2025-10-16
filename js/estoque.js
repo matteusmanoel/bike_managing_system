@@ -87,6 +87,62 @@ function renderizarTabela(filtrado = null) {
   window.vendasFiltradas = vendas;
 }
 
+function exportarCSV() {
+  const vendas =
+    window.vendasFiltradas || JSON.parse(localStorage.getItem("estoque")) || [];
+  if (vendas.length === 0) {
+    alert("Não há vendas registradas para exportar.");
+    return;
+  }
+
+  const cabecalho = [
+    "Data",
+    "Item",
+    "Descrição",
+    "Vendedor(a)",
+    "Forma de Pagamento",
+    "Quantidade",
+    "Valor Total",
+  ];
+  let csv = cabecalho.join(";") + "\n";
+
+  let totalQuantidade = 0;
+  let totalValor = 0;
+
+  vendas.forEach((v) => {
+    const quantidade = Number(v.quantidade);
+    const valorUnitario = Number(v.preco || 0);
+    const subtotal = valorUnitario * quantidade;
+
+    totalQuantidade += quantidade;
+    totalValor += subtotal;
+
+    const linha = [
+      v.data,
+      v.nome,
+      v.descricao?.replace(/;/g, " "),
+      v.vendedor,
+      v.pagamento,
+      quantidade,
+      subtotal.toFixed(2).replace(".", ","),
+    ];
+
+    csv += linha.join(";") + "\n";
+  });
+
+  csv += `;;;;TOTAL;${totalQuantidade};${totalValor.toFixed(2).replace(".", ",")}\n`;
+
+  const BOM = "\uFEFF";
+  const blob = new Blob([BOM + csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "relatorio_vendas.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 function voltar() {
   window.location.href = "cadastro.html";
 }
