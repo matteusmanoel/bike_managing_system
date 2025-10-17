@@ -143,6 +143,15 @@ function exportarCSV() {
   URL.revokeObjectURL(url);
 }
 
+function limparEstoque() {
+  if (confirm("Tem certeza que deseja limpar o estoque?")) {
+    localStorage.removeItem("estoque");
+    renderizarTabela([]);
+    alert("Estoque limpo com sucesso!");
+    location.reload();
+  }
+}
+
 function voltar() {
   window.location.href = "cadastro.html";
 }
