@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  carregarTabela();
   document.getElementById("formOS").addEventListener("submit", cadastrarServico);
 });
 
@@ -25,7 +26,53 @@ function cadastrarServico(e) {
   listaOS.push(os);
   localStorage.setItem("ordensServico", JSON.stringify(listaOS));
 
-  alert("Serviço cadastrado com sucesso!");
   document.getElementById("formOS").reset();
+  carregarTabela();
+}
+
+function carregarTabela() {
+  const listaOS = JSON.parse(localStorage.getItem("ordensServico")) || [];
+  const tbody = document.querySelector("#tabelaOS tbody");
+  tbody.innerHTML = "";
+
+  listaOS.forEach((os) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${os.cliente}</td>
+      <td>${os.descricao}</td>
+      <td>${os.tipo}</td>
+      <td>${os.data}</td>
+      <td>${os.status}</td>
+      <td>
+        <button class="btn-editar" onclick="editarOS(${os.id})">✏️ Editar</button>
+        <button class="btn-excluir" onclick="excluirOS(${os.id})">🗑️ Excluir</button>
+      </td>
+    `;
+    tbody.appendChild(row);
+  });
+}
+
+function excluirOS(id) {
+  if (!confirm("Deseja realmente excluir este serviço?")) return;
+
+  let listaOS = JSON.parse(localStorage.getItem("ordensServico")) || [];
+  listaOS = listaOS.filter((o) => o.id !== id);
+
+  localStorage.setItem("ordensServico", JSON.stringify(listaOS));
+  carregarTabela();
+}
+
+function editarOS(id) {
+  const listaOS = JSON.parse(localStorage.getItem("ordensServico")) || [];
+  const os = listaOS.find((o) => o.id === id);
+  if (!os) return;
+
+  document.getElementById("cliente").value = os.cliente;
+  document.getElementById("descricaoServico").value = os.descricao;
+  document.getElementById("tipoServico").value = os.tipo;
+  document.getElementById("valorServico").value = os.valor;
+
+  const novaLista = listaOS.filter((o) => o.id !== id);
+  localStorage.setItem("ordensServico", JSON.stringify(novaLista));
 }
 
