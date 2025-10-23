@@ -44,8 +44,13 @@ function carregarTabela() {
       <td>${os.data}</td>
       <td>${os.status}</td>
       <td>
-        <button class="btn-editar" onclick="editarOS(${os.id})">✏️ Editar</button>
-        <button class="btn-excluir" onclick="excluirOS(${os.id})">🗑️ Excluir</button>
+        <button class="btn-editar" onclick="editarOS(${os.id})">✏️</button>
+        <button class="btn-excluir" onclick="excluirOS(${os.id})">🗑️</button>
+        ${
+          os.status === "Em andamento"
+            ? `<button class="btn-finalizar" onclick="finalizarOS(${os.id})">✅</button>`
+            : "—"
+        }
       </td>
     `;
     tbody.appendChild(row);
@@ -59,6 +64,30 @@ function excluirOS(id) {
   listaOS = listaOS.filter((o) => o.id !== id);
 
   localStorage.setItem("ordensServico", JSON.stringify(listaOS));
+  carregarTabela();
+}
+
+function finalizarOS(id) {
+  const listaOS = JSON.parse(localStorage.getItem("ordensServico")) || [];
+  const os = listaOS.find((o) => o.id === id);
+  if (!os) return;
+
+  os.status = "Concluído";
+
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  carrinho.push({
+    id: Date.now(),
+    descricao: `Serviço: ${os.descricao}`,
+    preco: os.valor,
+    quantidade: 1,
+    fabricante: "Oficina",
+    categoria: os.tipo,
+    imagem: "../images/servico.png",
+  });
+
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  localStorage.setItem("ordensServico", JSON.stringify(listaOS));
+  alert("Serviço finalizado e enviado ao carrinho.");
   carregarTabela();
 }
 
