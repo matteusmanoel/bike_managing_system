@@ -41,10 +41,27 @@ bike-managing-system/
 
 ## Funcionalidades
 
-- Login de usuários
-- Dashboard principal
-- Cadastro de produtos
-- Listagem e busca de produtos
-- Carrinho de vendas
-- Controle de estoque
-- Ordens de serviço
+### ✅ Implementadas
+
+- **Login de usuários**: Sistema de autenticação para acesso
+- **Dashboard principal**: Painel com navegação para todas as funcionalidades
+- **Cadastro de produtos**: Formulário completo com upload de imagens
+- **Listagem de produtos**: Grid responsivo com busca e remoção
+- **Carrinho de vendas**: Gerenciamento de quantidades e finalização de vendas
+- **Controle de estoque**: 
+  - Visualização de vendas em tabela
+  - Filtros por data e vendedor
+  - Totalização automática
+  - Exportação de relatório CSV
+- **Ordens de serviço**: 
+  - Cadastro de serviços (conserto, troca, revisão)
+  - Gerenciamento completo (criar, editar, excluir)
+  - Finalização com envio automático ao carrinho
+  - Controle de status (Em andamento/Concluído)
+
+## Recursos Técnicos
+
+- Armazenamento em LocalStorage
+- Responsividade completa
+- Interface moderna e intuitiva
+- Código modular e organizado
