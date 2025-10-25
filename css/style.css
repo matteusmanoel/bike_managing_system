@@ -285,6 +285,47 @@ form button[type="submit"]:hover {
   min-width: 300px;
 }
 
+/* Botões de Ação */
+.btn-editar {
+  background-color: #f0ad4e;
+  color: white;
+  border: none;
+  margin-right: 5px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-editar:hover {
+  background-color: #ec971f;
+}
+
+.btn-excluir {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  margin-right: 5px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-excluir:hover {
+  background-color: #c9302c;
+}
+
+.btn-finalizar {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-finalizar:hover {
+  background-color: #449d44;
+}
 /* Filtros */
 .filtros {
   display: flex;
